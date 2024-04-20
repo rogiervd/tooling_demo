@@ -1,0 +1,8 @@
+module(
+    name = "tooling_demo",
+    version = "0.1.0",
+    # use compatibility_level to indicate breaking compatibility
+)
+
+bazel_dep(name = "googletest", version = "1.14.0")
+bazel_dep(name = "boost.rational", version = "1.83.0.bzl.1")

@@ -1,0 +1,11 @@
+cc_library(
+    name="compute",
+    hdrs=["include/compute/add_two.hpp"],
+    visibility=["//visibility:public"],
+    strip_include_prefix="include/",
+    include_prefix="",
+    deps=[
+        "@boost.rational//:boost.rational",
+        "@googletest//:gtest_main",
+    ]
+)
