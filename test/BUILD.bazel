@@ -1,0 +1,6 @@
+cc_test(
+    name="test_add_two",
+    srcs=["test_add_two.cpp"],
+    deps=["//:compute"],
+    size="small"
+)
