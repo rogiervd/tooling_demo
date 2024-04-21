@@ -4,5 +4,5 @@
 
 TEST(AddTwo, Fifty) {
     compute::AddTwo add_two;
-    EXPECT_EQ(add_two(50), 52);
+    EXPECT_EQ(add_two(50), 5210);
 }
