@@ -43,6 +43,5 @@ jobs:
         # Pull request reviews from clang-format.
         format-review: true
     permissions:
-      metadata: read
       contents: read
       pull-requests: write
