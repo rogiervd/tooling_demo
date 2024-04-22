@@ -18,7 +18,31 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        style: 'file'  # Use .clang-format config file
-        tidy-checks: '' # Use .clang-tidy config file
-        # only 'update' a single comment in a pull request's thread.
-        thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
+        extensions: 'cpp,hpp'
+        # Check only changed files?
+        files-changed-only: false
+        # Check only changed lines?
+        lines-changed-only: false
+        # Use .clang-format config file.
+        style: 'file'
+        # Use .clang-tidy config file.
+        tidy-checks: ''
+        # The version of clang-tools to use.
+        version: 16
+        # Only 'update' a single comment in a pull request's thread.
+        # thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
+        thread-comments: true
+        no-lgtm: true
+        # Give the same information as part of the workflow's job summary.
+        step-summary: true
+        file-annotations: true
+        # Extra arguments that are passed into clang-tidy
+        extra-args: '-std=c++17 -I./include'
+        # Pull request reviews from clang-tidy.
+        tidy-review: true
+        # Pull request reviews from clang-format.
+        format-review: true
+    permissions:
+      metadata: read
+      contents: read
+      pull-requests: write
