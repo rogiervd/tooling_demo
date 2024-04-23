@@ -1,6 +1,19 @@
 cc_test(
     name="test_add_two",
     srcs=["test_add_two.cpp"],
-    deps=["//:compute"],
+    deps=[
+        "//:compute",
+        "@googletest//:gtest_main",
+    ],
+    size="small"
+)
+
+cc_test(
+    name="test_add_two_2",
+    srcs=["test_add_two_2.cpp"],
+    deps=[
+        "//:compute",
+        "@boost.test//:unit_test_main",
+    ],
     size="small"
 )
