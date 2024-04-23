@@ -1,0 +1,26 @@
+on:
+  push:
+    branches: [ main, develop, test-github-actions ]
+  pull_request:
+    branches: [ main, develop, test-github-actions ]
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    # clang-tidy might behave slightly differently on difference operating
+    # systems, but hopefully using a recent Ubuntu will make it cover a fair
+    # amount.
+    runs-on: ubuntu-22.04
+        
+    steps:
+    - uses: actions/checkout@v4
+    - uses: bazel-contrib/setup-bazel@0.8.1
+      with:
+        # Avoid downloading Bazel every time.
+        bazelisk-cache: true
+        # Store build cache per workflow.
+        disk-cache: ${{ github.workflow }}
+        # Share repository cache between workflows.
+        repository-cache: true
+    - run: bazel build //... config clang-tidy
