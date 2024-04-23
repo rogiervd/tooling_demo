@@ -4,5 +4,9 @@ module(
     # use compatibility_level to indicate breaking compatibility
 )
 
-bazel_dep(name = "googletest", version = "1.14.0")
+# This demo uses Boost.Rational.
 bazel_dep(name = "boost.rational", version = "1.83.0.bzl.1")
+
+# Test frameworks that can be used:
+bazel_dep(name = "googletest", version = "1.14.0")
+bazel_dep(name = "boost.test", version = "1.83.0.bzl.4")

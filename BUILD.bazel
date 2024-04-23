@@ -6,6 +6,5 @@ cc_library(
     include_prefix="",
     deps=[
         "@boost.rational//:boost.rational",
-        "@googletest//:gtest_main",
     ]
 )
