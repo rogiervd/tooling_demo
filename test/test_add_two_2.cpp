@@ -6,6 +6,6 @@
 
 BOOST_AUTO_TEST_CASE (AddTwo)
 {
-    compute::AddTwo add_two;
+    const compute::AddTwo add_two;
     BOOST_TEST(add_two(70) == 72);
 }

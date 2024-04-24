@@ -7,9 +7,11 @@ namespace compute
 
     class AddTwo {
     public:
-        int operator() (int i) const {
-            boost::rational<int> fraction(10, 5);
-            return i + fraction.numerator();
+        int operator() (int value) const {
+            const int numerator = 10;
+            const int denominator =5;
+            const boost::rational<int> fraction(numerator, denominator);
+            return value + fraction.numerator();
         }
     };
 
