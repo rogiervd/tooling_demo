@@ -50,3 +50,5 @@ build:ubsan --linkopt -fsanitize=undefined
 #   bazel ... --config clang-tiday
 build:clang-tidy --aspects @bazel_clang_tidy//clang_tidy:clang_tidy.bzl%clang_tidy_aspect
 build:clang-tidy --output_groups=report
+# Actually use ./.clang-tidy.
+build:clang-tidy --@bazel_clang_tidy//:clang_tidy_config=//:clang_tidy_config
