@@ -32,3 +32,6 @@ jobs:
       with:
         file: bazel-out/_coverage/_coverage_report.dat
         format: lcov
+      # To get pull requests comments, it may be necessary to invite the
+      # @coveralls user to have Write permissions.
+      # See https://github.com/marketplace/actions/coveralls-github-action
