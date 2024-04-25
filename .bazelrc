@@ -8,5 +8,47 @@ common --registry https://raw.githubusercontent.com/bazelboost/registry/main
 # explicitly so it needs to be added back explicitly).
 common --registry https://bcr.bazel.build/
 
+# Arguments for C++ builds.
+# All warnings are switched on and generate errors.
+# TODO does this work on Windows?
 build --cxxopt=-std=c++17
 build --cxxopt=-Werror
+build --cxxopt=-Wall
+
+# Configuration for builds with address sanitiser.
+# This can be selected with
+#   bazel ... --config asan
+build:asan --strip=never
+# Options: https://github.com/google/sanitizers/wiki/AddressSanitizer
+build:asan --copt -fsanitize=address
+build:asan --linkopt -fsanitize=address
+# If this is too slow, -O1 may be a good tradeoff.
+build:asan --copt -O0
+# Nicer stack traces
+build:asan --copt -fno-omit-frame-pointer
+
+# Configuration for builds with memory sanitizer.
+# This can be selected with
+#   bazel ... --config msan
+build:msan --strip=never
+build:msan --force_pic
+# https://github.com/google/sanitizers/wiki/MemorySanitizer
+build:msan --copt -fsanitize=memory
+build:msan --linkopt -fsanitize=memory
+# The memory sanitizer docs say -O2 but that seems excessive.
+build:asan --copt -O1
+build:msan --copt -fno-omit-frame-pointer
+
+# Configuration for builds with the Undefined Behavior Sanitizer.
+# This can be selected with
+#   bazel ... --config ubsan
+build:ubsan --copt -fsanitize=undefined
+build:ubsan --linkopt -fsanitize=undefined
+
+# Configuration for "builds" with clang-tidy, which looks for errors.
+# This can be selected with
+#   bazel ... --config clang-tiday
+build:clang-tidy --aspects @bazel_clang_tidy//clang_tidy:clang_tidy.bzl%clang_tidy_aspect
+build:clang-tidy --output_groups=report
+# Actually use ./.clang-tidy.
+build:clang-tidy --@bazel_clang_tidy//:clang_tidy_config=//:clang_tidy_config
