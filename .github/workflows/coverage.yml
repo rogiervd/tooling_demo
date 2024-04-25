@@ -25,3 +25,4 @@ jobs:
         # Share repository cache between workflows.
         repository-cache: true
     - run: bazel coverage //test:all
+    - run: wc bazel-out/_coverage/_coverage_report.dat
