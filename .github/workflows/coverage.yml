@@ -26,3 +26,9 @@ jobs:
         repository-cache: true
     - run: bazel coverage //test:all
     - run: wc bazel-out/_coverage/_coverage_report.dat
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@v2
+      with:
+        file: bazel-out/_coverage/_coverage_report.dat
+        format: lcov
