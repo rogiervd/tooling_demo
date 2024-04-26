@@ -2,19 +2,19 @@
 
 #include <boost/rational.hpp>
 
-namespace compute
+namespace compute {
+
+class AddTwo
 {
-
-    class AddTwo {
-    public:
-        int operator() (int value) const {
-            const int numerator = 10;
-            const int denominator =5;
-            const boost::rational<int> fraction(numerator, denominator);
-            return value + fraction.numerator();
-        }
-    };
-
+public:
+    int operator()(int value) const
+    {
+        const int numerator = 10;
+        const int denominator = 5;
+        const boost::rational<int> fraction(numerator, denominator);
+        return value + fraction.numerator();
+    }
+};
 
 
-} // namespace compute
+}  // namespace compute
