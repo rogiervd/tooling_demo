@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE test_add_two_2
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE (AddTwo)
+BOOST_AUTO_TEST_CASE(AddTwo)
 {
     const compute::AddTwo add_two;
     BOOST_TEST(add_two(70) == 72);
