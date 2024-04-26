@@ -40,6 +40,9 @@ build:asan --copt -O1
 build:msan --copt -fno-omit-frame-pointer
 
 # Configuration for builds with the Undefined Behavior Sanitizer.
+# These flags have been found by trying ones mentioned at
+# https://github.com/bazelbuild/bazel/issues/11122
+# until it runs on GitHub.
 # This can be selected with
 #   bazel ... --config ubsan
 # Is this useful? --copt -Og
