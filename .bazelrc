@@ -42,8 +42,12 @@ build:msan --copt -fno-omit-frame-pointer
 # Configuration for builds with the Undefined Behavior Sanitizer.
 # This can be selected with
 #   bazel ... --config ubsan
+# Is this useful? --copt -Og
+build:ubsan --strip=never
 build:ubsan --copt -fsanitize=undefined
 build:ubsan --linkopt -fsanitize=undefined
+build:ubsan --copt -fno-omit-frame-pointer
+build:ubsan --copt -fno-sanitize=vptr
 
 # Configuration for "builds" with clang-tidy, which looks for errors.
 # This can be selected with
