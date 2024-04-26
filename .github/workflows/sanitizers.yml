@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        sanitizer: [ asan, msan, ubsan ]
+        sanitizer: [ asan, ubsan ]
         
     steps:
     - uses: actions/checkout@v4

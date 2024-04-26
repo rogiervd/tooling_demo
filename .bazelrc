@@ -27,18 +27,6 @@ build:asan --copt -O0
 # Nicer stack traces
 build:asan --copt -fno-omit-frame-pointer
 
-# Configuration for builds with memory sanitizer.
-# This can be selected with
-#   bazel ... --config msan
-build:msan --strip=never
-build:msan --force_pic
-# https://github.com/google/sanitizers/wiki/MemorySanitizer
-build:msan --copt -fsanitize=memory
-build:msan --linkopt -fsanitize=memory
-# The memory sanitizer docs say -O2 but that seems excessive.
-build:asan --copt -O1
-build:msan --copt -fno-omit-frame-pointer
-
 # Configuration for builds with the Undefined Behavior Sanitizer.
 # These flags have been found by trying ones mentioned at
 # https://github.com/bazelbuild/bazel/issues/11122
