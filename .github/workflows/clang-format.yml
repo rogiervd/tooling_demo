@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  clang-format:
     # Use the standard clang-format on the operation system.
     runs-on: ubuntu-22.04
         
