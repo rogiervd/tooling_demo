@@ -1,0 +1,30 @@
+name: Unit tests with sanitizers
+
+# Run tests with Clang and three different sanitizer.
+
+on:
+  push:
+    branches: [ main, develop, test-github-actions ]
+  pull_request:
+    branches: [ main, develop, test-github-actions ]
+
+  workflow_dispatch:
+
+jobs:
+  test-sanitizers:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        sanitizer: [ asan, ubsan ]
+        
+    steps:
+    - uses: actions/checkout@v4
+    - uses: bazel-contrib/setup-bazel@0.8.1
+      with:
+        # Avoid downloading Bazel every time.
+        bazelisk-cache: true
+        # Store build cache per workflow.
+        disk-cache: ${{ github.workflow }}
+        # Share repository cache between workflows.
+        repository-cache: true
+    - run: CC=clang CXX=clang++ bazel test //test:all --test_output=errors --config ${{ matrix.sanitizer }}
