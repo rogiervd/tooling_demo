@@ -47,7 +47,6 @@ build:ubsan --strip=never
 build:ubsan --copt -fsanitize=undefined
 build:ubsan --linkopt -fsanitize=undefined
 build:ubsan --copt -fno-omit-frame-pointer
-build:ubsan --copt -fno-sanitize=vptr
 build:ubsan --linkopt -fsanitize-link-c++-runtime
 
 # Configuration for "builds" with clang-tidy, which looks for errors.
