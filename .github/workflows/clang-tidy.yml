@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  clang-tidy:
     # clang-tidy might behave slightly differently on difference operating
     # systems, but hopefully using a recent Ubuntu will make it cover a fair
     # amount.

@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  coverage:
     # Any differences between coverage on different operating systems are
     # probably minor.
     runs-on: ubuntu-22.04
