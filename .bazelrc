@@ -52,3 +52,20 @@ build:clang-tidy --aspects @bazel_clang_tidy//clang_tidy:clang_tidy.bzl%clang_ti
 build:clang-tidy --output_groups=report
 # Actually use ./.clang-tidy.
 build:clang-tidy --@bazel_clang_tidy//:clang_tidy_config=//:clang_tidy_config
+
+# Settings for generating code coverage for tests.
+coverage --instrumentation_filter='-googletest'
+coverage --combined_report=lcov
+
+# On macOS, this should be run with (from
+# <https://github.com/bazelbuild/bazel/issues/14970#issuecomment-1894565761>)
+
+# LLVM_PROFDATA=`xcrun -f llvm-profdata`
+# LLVM_COV=`xcrun -f llvm-cov`
+
+# bazel coverage //test/... \
+#     --experimental_generate_llvm_lcov \
+#     --test_env=COVERAGE_GCOV_PATH=${LLVM_PROFDATA} \
+#     --test_env=LLVM_COV=${LLVM_COV} \
+#     --copt=-ffile-compilation-dir=. \
+#     --nocache_test_results
